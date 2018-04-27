@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class MainController extends Controller
+class AnalyticsController extends Controller
 {
     public function index()
     {
-        return view('index');
+        return view('contents.analytics');
     }
 }
