@@ -1,7 +1,10 @@
 <?php
 
 /* root */
-Route::get('/','DashboardController@index');
+Route::get('/', function () {
+    return redirect('/dashboard');
+});
+//Route::get('/','DashboardController@index');
 
 /* Dashboard */
 Route::get('/dashboard','DashboardController@index');
