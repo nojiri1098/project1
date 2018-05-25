@@ -15,10 +15,10 @@ class CreateEnvironmentsTable extends Migration
         Schema::create('environments', function (Blueprint $table) {
             $table->increments('id');
             $table->Integer('temperature');
-            $table->unsignedInteger('humid');
+            $table->unsignedInteger('humidity');
             $table->Integer('co2');
             $table->Integer('weather');
-            $table->Integer('rainy');
+            $table->Integer('rain');
             $table->timestamps();
         });
     }

@@ -14,8 +14,8 @@ class CreatePlantersTable extends Migration
     {
         Schema::create('planters', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('light');
-            $table->string('rate');
+            $table->unsignedInteger('light');
+            $table->unsignedInteger('rate');
             $table->timestamps();
         });
     }

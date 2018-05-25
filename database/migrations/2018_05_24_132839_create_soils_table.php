@@ -14,9 +14,9 @@ class CreateSoilsTable extends Migration
     {
         Schema::create('soils', function (Blueprint $table) {
             $table->increments('id');
-            $table->Integer('planter_id');
-            $table->Integer('environment_id');
-            $table->Integer('water');
+            $table->unsignedInteger('planter_id');
+            $table->unsignedInteger('environment_id');
+            $table->unsignedInteger('water');
             $table->timestamps();
         });
     }
