@@ -8,11 +8,11 @@ class Soil extends Model
 {
     public function planter()
     {
-        return $this->belongsTo('App\Models\Planter');
+        return $this->belongsTo('App\Planter', 'planter_id');
     }
 
     public function environment()
     {
-        return $this->belongsTo('App\Models\Environment');
+        return $this->belongsTo('App\Environment', 'environment_id');
     }
 }
