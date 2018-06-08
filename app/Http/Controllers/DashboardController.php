@@ -53,4 +53,16 @@ class DashboardController extends Controller
 
         return redirect()->route('dashboard')->with(['success', '成功']);
     }
+
+    public function getWeather()
+    {
+        $baseUrl = env('WEATHER_URL');
+        $api = env('WEATHER_API');
+        $location = env('WEATHER_LOCATION');
+        $url = $baseUrl . '?q=' . $location . '&units=metric&appid=' . $api;
+
+        $weather = json_decode(file_get_contents($url), true);
+        
+        return redirect()->route('dashboard')->with(['success', '成功']);
+    }
 }

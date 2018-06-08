@@ -16,6 +16,7 @@
             <li class="active">Dashboard</li>
         </ol>
 
+        <a href={{ route('weather') }}>weather</a>
         <a href={{ route('store') }}>store</a>
 
         <table class="form-table">
