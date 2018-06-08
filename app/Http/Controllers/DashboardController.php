@@ -25,24 +25,23 @@ class DashboardController extends Controller
      */
     public function storeCensorValue()
     {
-        // あとでArduinoの値と置き換える
-        $temp    = 20;
-        $hum     = 50;
-        $co2     = 1000;
-        $weather = $this->getOpenWeatherMap();
-        $rain    = 50;
+        // あとでArduinoから取得した値に置き換える
+        $temp = 20;
+        $hum  = 50;
+        $co2  = 1000;
+        $data = $this->getWeather();
 
         $env = new Environment();
         $env->temperature = $temp;
         $env->humidity = $hum;
         $env->co2 = $co2;
-        $env->weather = $weather['weather'][0]['main'];
-        $env->rain = $rain;
+        $env->weather = $data['weather'];
+        $env->precipitation = $data['precipitation'];
         $env->save();
 
         $planter_id = [1,2,3,4];
         $water = [1000,2000,1200,1234];
-        
+
         for ($i = 0; $i < count($planter_id); $i++) {
             $soil = new Soil();
             $soil->planter_id = $planter_id[$i];
@@ -54,23 +53,22 @@ class DashboardController extends Controller
         return redirect()->route('dashboard')->with(['success', '成功']);
     }
 
-    public function getOpenWeatherMap()
+    /*
+     * 現在の天気と降水確率を取得する
+     */
+    public function getWeather()
     {
-//        WEATHER_URL=http://api.openweathermap.org/data/2.5/weather
-//        WEATHER_API=87de68884044e8e9a266d3e300cc8692
-//        WEATHER_LOCATION=Oita-shi,jp
-        $baseUrl = env('WEATHER_URL');
+        $baseUrl = 'https://api.forecast.io/forecast';
         $api = env('WEATHER_API');
-        $location = env('WEATHER_LOCATION');
-        $url = $baseUrl . '?q=' . $location . '&units=metric&appid=' . $api;
+        $Oita['latitude']  = env('WEATHER_LATITUDE');
+        $Oita['longitude'] = env('WEATHER_LONGITUDE');
 
-        $weather = json_decode(file_get_contents($url), true);
-        dd($weather);
-        $data['weahter'] = $weather['weather'][0]['main'];
-        $data['temp_max'] = $weather['main']['temp_max'];
-        $data['temp_min'] = $weather['main']['temp_min'];
-        $data['humidity'] = $weather['main']['humidity'];
+        $temp = file_get_contents($baseUrl . '/' . $api . '/' . $Oita['latitude'] . ',' . $Oita['longitude']);
+        $forecast = json_decode($temp,true);
 
-        return redirect()->route('dashboard')->with(['success', '成功']);
+        $data['weather'] = $forecast['currently']['precipType'];
+        $data['precipitation'] = $forecast['currently']['precipProbability'];
+
+        return $data;
     }
 }
