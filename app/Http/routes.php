@@ -1,16 +1,20 @@
 <?php
 
 /* root */
-Route::get('/', function () {
-    return redirect('/dashboard');
-});
-//Route::get('/','DashboardController@index');
+Route::get('/', 'DashboardController@index');
 
 /* Dashboard */
-Route::get('/dashboard','DashboardController@index');
+Route::group(['prefix' => 'dashboard'], function () {
+    Route::get('/', 'DashboardController@index')->name('dashboard');
+    Route::get('/store', 'DashboardController@storeCensorValue')->name('store');
+});
 
 /* Data */
-Route::get('/data','DataController@index');
+Route::group(['prefix' => 'data'], function () {
+    Route::get('/', 'DataController@index')->name('data');
+});
 
 /* Analytics */
-Route::get('/analytics','AnalyticsController@index');
+Route::group(['prefix' => 'analytics'], function () {
+    Route::get('/','AnalyticsController@index')->name('analytics');
+});

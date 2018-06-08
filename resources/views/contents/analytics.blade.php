@@ -15,6 +15,9 @@
             <li><a href="#"><i class="fa fa-dashboard"></i> Analytics</a></li>
             <li class="active">Analytics</li>
         </ol>
+
+        <a href={{ route('store') }}>store</a>
+
     </section>
 
 @stop
