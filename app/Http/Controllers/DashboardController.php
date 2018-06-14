@@ -31,26 +31,34 @@ class DashboardController extends Controller
         $co2  = 1000;
         $data = $this->getWeather();
 
-        $env = new Environment();
-        $env->temperature = $temp;
-        $env->humidity = $hum;
-        $env->co2 = $co2;
-        $env->weather = $data['weather'];
-        $env->precipitation = $data['precipitation'];
-        $env->save();
+        try {
+            DB::beginTransaction();
 
-        $planter_id = [1,2,3,4];
-        $water = [1000,2000,1200,1234];
+            $env = new Environment();
+            $env->temperature = $temp;
+            $env->humidity = $hum;
+            $env->co2 = $co2;
+            $env->weather = $data['weather'];
+            $env->precipitation = $data['precipitation'];
+            $env->save();
 
-        for ($i = 0; $i < count($planter_id); $i++) {
-            $soil = new Soil();
-            $soil->planter_id = $planter_id[$i];
-            $soil->environment_id = $env->id;
-            $soil->water = $water[$i];
-            $soil->save();
+            $planter_id = [1, 2, 3, 4];
+            $water = [1000, 2000, 1200, 1234];
+
+            for ($i = 0; $i < count($planter_id); $i++) {
+                $soil = new Soil();
+                $soil->planter_id = $planter_id[$i];
+                $soil->environment_id = $env->id;
+                $soil->water = $water[$i];
+                $soil->save();
+            }
+        } catch (\Exception $e) {
+            DB::rollback();
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', '保存できませんでした．');
         }
 
-        return redirect()->route('dashboard')->with(['success', '成功']);
+        return redirect()->route('dashboard')->with(['success', '保存しました．']);
     }
 
     /*
@@ -63,11 +71,16 @@ class DashboardController extends Controller
         $Oita['latitude']  = env('WEATHER_LATITUDE');
         $Oita['longitude'] = env('WEATHER_LONGITUDE');
 
-        $temp = file_get_contents($baseUrl . '/' . $api . '/' . $Oita['latitude'] . ',' . $Oita['longitude']);
-        $forecast = json_decode($temp,true);
+        try {
+            $temp = file_get_contents($baseUrl . '/' . $api . '/' . $Oita['latitude'] . ',' . $Oita['longitude']);
+            $forecast = json_decode($temp,true);
 
-        $data['weather'] = $forecast['currently']['precipType'];
-        $data['precipitation'] = $forecast['currently']['precipProbability'];
+            $data['weather'] = $forecast['currently']['precipType'];
+            $data['precipitation'] = $forecast['currently']['precipProbability'];
+        } catch (\Exception $e) {
+            $data['weather'] = 'Rain';
+            $data['precipitation'] = 50;
+         }
 
         return $data;
     }
