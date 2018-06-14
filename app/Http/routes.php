@@ -1,7 +1,7 @@
 <?php
 
 /* root */
-Route::get('/', 'DashboardController@index');
+Route::get('/index', 'DashboardController@index1');
 
 /* Dashboard */
 Route::group(['prefix' => 'dashboard'], function () {

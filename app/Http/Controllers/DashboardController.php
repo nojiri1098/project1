@@ -10,6 +10,11 @@ use App\Http\Requests;
 
 class DashboardController extends Controller
 {
+    public function index1()
+    {
+        return view('contents.index1');
+    }
+
     public function index()
     {
         // created_atが最新のレコードを取得する
