@@ -6125,7 +6125,7 @@ var View = fc.View = Class.extend({
 	scrollerEl: null, // the element that will most likely scroll when content is too tall
 	scrollTop: null, // cached vertical scroll value
 
-	// classNames styled by jqui themes
+	// classNames styled by jqui tablesorter_themes
 	widgetHeaderClass: null,
 	widgetContentClass: null,
 	highlightStateClass: null,

@@ -45,5 +45,6 @@
 
 @include('elements.js')
 
+@yield('js')
 </body>
 </html>

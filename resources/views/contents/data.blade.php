@@ -48,6 +48,7 @@
                             <!-- /.card-header -->
                             <div class="card-body table-responsive p-0">
                                 <table class="table table-hover">
+                                    <thead>
                                     <tr>
                                         <th>Date</th>
                                         <th>Temperature</th>
@@ -60,6 +61,8 @@
                                         <th>Water 3</th>
                                         <th>Water 4</th>
                                     </tr>
+                                    </thead>
+
                                     @foreach($envs as $key => $env)
                                         <tr>
                                             <td>{{ $env->created_at->format('Y/m/d H:m') }}</td>
