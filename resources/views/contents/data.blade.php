@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Dashboard</h1>
+                        <h1 class="m-0 text-dark">Data</h1>
                     </div>
                     <!-- /.col -->
                     <div class="col-sm-6">
@@ -33,7 +33,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Responsive Hover Table</h3>
+                                <h3 class="card-title">Data List</h3>
 
                                 <div class="card-tools">
                                     <div class="input-group input-group-sm" style="width: 150px;">
@@ -47,25 +47,33 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body table-responsive p-0">
-                                <table class="table table-hover">
+                                <table class="table table-hover text-right">
+                                    <thead>
                                     <tr>
+                                        <th>Date</th>
                                         <th>Temperature</th>
                                         <th>Humidity</th>
                                         <th>Co2</th>
                                         <th>Weather</th>
-                                        <th>Rain Percentage</th>
+                                        <th>Precipitation</th>
                                         <th>Water 1</th>
                                         <th>Water 2</th>
                                         <th>Water 3</th>
                                         <th>Water 4</th>
                                     </tr>
-                                    @foreach($envs as $env)
+                                    </thead>
+
+                                    @foreach($envs as $key => $env)
                                         <tr>
+                                            <td>{{ $env->created_at->format('Y/m/d H:m') }}</td>
                                             <td>{{ $env->temperature }}</td>
                                             <td>{{ $env->humidity }}</td>
                                             <td>{{ $env->co2 }}</td>
                                             <td>{{ $env->weather }}</td>
-                                            <td>{{ $env->rain }}</td>
+                                            <td>{{ $env->precipitation }}</td>
+                                            @foreach($env->soils()->get() as $soil)
+                                                <td>{{ $soil->water }}</td>
+                                            @endforeach
                                         </tr>
                                     @endforeach
                                 </table>

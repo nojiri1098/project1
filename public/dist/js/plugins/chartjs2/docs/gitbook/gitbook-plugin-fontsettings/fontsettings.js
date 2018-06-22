@@ -7,7 +7,7 @@ require(['gitbook', 'jquery'], function(gitbook, $) {
     // Current fontsettings state
     var fontState;
 
-    // Default themes
+    // Default tablesorter_themes
     var THEMES = [
         {
             config: 'white',
@@ -40,12 +40,12 @@ require(['gitbook', 'jquery'], function(gitbook, $) {
         }
     ];
 
-    // Return configured themes
+    // Return configured tablesorter_themes
     function getThemes() {
         return THEMES;
     }
 
-    // Modify configured themes
+    // Modify configured tablesorter_themes
     function setThemes(themes) {
         THEMES = themes;
         updateButtons();

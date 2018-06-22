@@ -35,3 +35,7 @@
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+<!-- TableSorter -->
+<link rel="stylesheet" href='js/tablesorter_themes/blue/style.css' type="text/css" media="print, projection, screen" />
+<script src="'js/jquery-latest.js }}" type="text/javascript"></script>
+<script src="'js/jquery.tablesorter.min.js" type="text/javascript"></script>
