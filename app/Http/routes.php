@@ -1,7 +1,8 @@
 <?php
 
 /* root */
-Route::get('/index', 'DashboardController@index1');
+Route::get('/index', 'HomeController@index');
+Route::get('/pulse', 'HomeController@pulse');
 
 /* Dashboard */
 Route::group(['prefix' => 'dashboard'], function () {

@@ -1,8 +1,8 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-danger elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-        <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+    <a href="{{ url('index') }}" class="brand-link">
+        <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
              style="opacity: .8">
         <span class="brand-text font-weight-light">odyssey</span>
     </a>
@@ -16,36 +16,31 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="./index3.html" class="nav-link active">
+                    <a href="{{ url('index') }}" class="nav-link {{ isActiveUrl('index') }}">
                         <i class="fa fa-circle-o nav-icon"></i>
                         <p>Top Page</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/pulse.html" class="nav-link">
+                    <a href="{{ url('pulse') }}" class="nav-link {{ isActiveUrl('pulse') }}">
                         <i class="nav-icon fa fa-play"></i>
-                        <p>
-                            pulse
-                        </p>
+                        <p>pulse</p>
                     </a>
                 </li>
                 <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                    <a href="{{ url('#') }}" class="nav-link {{ isActiveUrl('#') }}">
                         <i class="nav-icon fa fa-pie-chart"></i>
-                        <p>
-                            Charts
-                            <i class="right fa fa-angle-left"></i>
-                        </p>
+                        <p>Charts<i class="right fa fa-angle-left"></i></p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/charts/chartjs.html" class="nav-link">
+                            <a href="{{ asset('pages/charts/chartjs.html') }}" class="nav-link">
                                 <i class="fa fa-circle-o nav-icon"></i>
                                 <p>ChartJS</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/charts/flot.html" class="nav-link">
+                            <a href="{{ asset('pages/charts/flot.html') }}" class="nav-link">
                                 <i class="fa fa-circle-o nav-icon"></i>
                                 <p>Flot</p>
                             </a>
@@ -53,11 +48,9 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/calendar.html" class="nav-link">
+                    <a href="{{ asset('pages/calendar.html') }}" class="nav-link {{ isActiveUrl('#') }}">
                         <i class="nav-icon fa fa-calendar"></i>
-                        <p>
-                            Calendar
-                        </p>
+                        <p>Calendar</p>
                     </a>
                 </li>
             </ul>
