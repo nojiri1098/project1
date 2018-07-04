@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Environment;
 
 use App\Http\Requests;
 
@@ -10,7 +11,9 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('contents.index');
+        $envs = Environment::all();
+
+        return view('contents.index')->with(['envs' => $envs]);
     }
 
     public function pulse()
