@@ -20,9 +20,8 @@ class DashboardController extends Controller
         // created_atが最新のレコードを取得する
         $env = Environment::latest()->get()->first();
         $soils = $env->soils()->get();
-        $weather = Environment::$weatherTypeLabels[$env->weather];
 
-        return view('contents.dashboard')->with(['env' => $env, 'soils' => $soils, 'weather' => $weather]);
+        return view('contents.dashboard')->with(['env' => $env, 'soils' => $soils]);
     }
 
     /*

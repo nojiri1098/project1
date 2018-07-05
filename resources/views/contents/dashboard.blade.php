@@ -46,18 +46,6 @@
                         <th>湿度</th>
                         <td>{{ $env->humidity }}</td>
                     </tr>
-                    <tr>
-                        <th>Co2濃度</th>
-                        <td>{{ $env->co2 }}</td>
-                    </tr>
-                    <tr>
-                        <th>天気</th>
-                        <td>{{ $weather }}</td>
-                    </tr>
-                    <tr>
-                        <th>降水確率</th>
-                        <td>{{ $env->rain }}</td>
-                    </tr>
                     @foreach($soils as $key => $soil)
                         <tr>
                             <th>土壌湿度_ {{ $key+1 }}</th>
