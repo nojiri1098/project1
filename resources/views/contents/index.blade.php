@@ -45,6 +45,10 @@
                                 </div>
                                 <!-- /.d-flex -->
 
+                                <input type="hidden" value="{{ count($temperatures) }}" id="temperature-count">
+                                @foreach($temperatures as $key => $temperature)
+                                    <input type="hidden" value="{{ $temperature }}" id="temperature-{{ $key }}">
+                                @endforeach
                                 <div class="position-relative mb-4">
                                     <canvas id="temperature-chart" height="200"></canvas>
                                 </div>
@@ -70,8 +74,11 @@
                                 </div>
                                 <!-- /.d-flex -->
 
+                                <input type="hidden" value="{{ count($humidities) }}" id="humidity-count">
+                                @foreach($humidities as $key => $humidity)
+                                    <input type="hidden" value="{{ $humidity }}" id="humidity-{{ $key }}">
+                                @endforeach
                                 <div class="position-relative mb-4">
-                                    <form type="hidden" value="{{ $envs->first() }}" id="humidity"></form>
                                     <canvas id="humidity-chart" height="200"></canvas>
                                 </div>
                             </div>
@@ -171,6 +178,5 @@
 
 @section('js')
     <script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
-    <script src="{{ asset('dist/js/demo.js') }}"></script>
-    <script src="{{ asset('dist/js/pages/dashboard3.js') }}"></script>
+    <script src="{{ asset('js/index-chart.js') }}"></script>
 @stop

@@ -12,8 +12,15 @@ class HomeController extends Controller
     public function index()
     {
         $envs = Environment::all();
+        $temperatures = [];
+        $humidities = [];
 
-        return view('contents.index')->with(['envs' => $envs]);
+        foreach ($envs as $key => $env) {
+            $temperatures[$key] = $env->temperature;
+            $humidities[$key] = $env->humidity;
+        }
+
+        return view('contents.index')->with(['envs' => $envs, 'temperatures' => $temperatures, 'humidities' => $humidities]);
     }
 
     public function pulse()
