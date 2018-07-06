@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use App\Environment;
 use App\Soil;
 use App\Planter;
+use App\Sensor;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+
 
 class DashboardController extends Controller
 {
@@ -30,13 +34,13 @@ class DashboardController extends Controller
     public function storeCensorValue()
     {
         // あとでArduinoから取得した値に置き換える
-        exec('python lib/test.py', $output);
-        dd($output[0]);
+        //exec('python lib/test.py', $output);
+        //dd($output[0]);
 
         $temp = 20;
         $hum  = 50;
-        $co2  = 1000;
-        $data = $this->getWeather();
+        //$co2  = 1000;
+        //$data = $this->getWeather();
 
         try {
             DB::beginTransaction();
@@ -44,9 +48,9 @@ class DashboardController extends Controller
             $env = new Environment();
             $env->temperature = $temp;
             $env->humidity = $hum;
-            $env->co2 = $co2;
-            $env->weather = $data['weather'];
-            $env->precipitation = $data['precipitation'];
+            //$env->co2 = $co2;
+            //$env->weather = $data['weather'];
+            //$env->precipitation = $data['precipitation'];
             $env->save();
 
             $planter_id = [1, 2, 3, 4];
@@ -59,6 +63,9 @@ class DashboardController extends Controller
                 $soil->water = $water[$i];
                 $soil->save();
             }
+
+            DB::commit();
+
         } catch (\Exception $e) {
             DB::rollback();
             Log::error($e->getMessage());
