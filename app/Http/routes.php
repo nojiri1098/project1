@@ -1,21 +1,20 @@
 <?php
 
-/* root */
-Route::get('/index', 'DashboardController@index1');
+/*
+|--------------------------------------------------------------------------
+| Application Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register all of the routes for an application.
+| It's a breeze. Simply tell Laravel the URIs it should respond to
+| and give it the controller to call when that URI is requested.
+|
+*/
 
-/* Dashboard */
-Route::group(['prefix' => 'dashboard'], function () {
-    Route::get('/', 'DashboardController@index')->name('dashboard');
-    Route::get('/store', 'DashboardController@storeCensorValue')->name('store');
-    Route::get('/weather', 'DashboardController@getWeather')->name('weather');
+Route::get('/', function () {
+    return view('welcome');
 });
 
-/* Data */
-Route::group(['prefix' => 'data'], function () {
-    Route::get('/', 'DataController@index')->name('data');
-});
-
-/* Analytics */
-Route::group(['prefix' => 'analytics'], function () {
-    Route::get('/','AnalyticsController@index')->name('analytics');
+Route::get('/index', function () {
+    return view('index');
 });
