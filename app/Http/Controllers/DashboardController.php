@@ -30,6 +30,9 @@ class DashboardController extends Controller
     public function storeCensorValue()
     {
         // あとでArduinoから取得した値に置き換える
+        exec('python lib/test.py', $output);
+        dd($output[0]);
+
         $temp = 20;
         $hum  = 50;
         $co2  = 1000;
