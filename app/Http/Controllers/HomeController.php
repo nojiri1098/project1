@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $envs = Environment::all();
+        $envs = Environment::limit(144)->orderBy('created_at', 'DESC')->get();
         $temperatures = [];
         $humidities = [];
 
