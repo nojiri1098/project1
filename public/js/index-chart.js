@@ -144,6 +144,8 @@ $(function () {
                     },
 
                     ticks: {
+                        suggestedMax: 40,
+                        suggestedMin: -10,
                         fontSize: 15,
                     }
                 }]
