@@ -39,7 +39,7 @@
                                         <span class="text-bold text-lg">現在の温度{{ $envs->first()->temperature }}℃</span>
                                     </p>
                                     <p class="ml-auto d-flex flex-column text-right">
-                                        <span class="text-success">{{ $envs->first()->created_at->format('Y/m/d h:m') }}</span>
+                                        <span class="text-success">{{ $envs->first()->created_at->addHour(9)->format('Y/m/d h:m') }}</span>
                                         <span class="text-muted">Since 24h ago</span>
                                     </p>
                                 </div>
@@ -67,7 +67,7 @@
                                         <span class="text-bold text-lg">現在の湿度{{ $envs->first()->humidity }}%</span>
                                     </p>
                                     <p class="ml-auto d-flex flex-column text-right">
-                                        <span class="text-success">{{ $envs->first()->created_at->format('Y/m/d h:m') }}</span>
+                                        <span class="text-success">{{ $envs->first()->created_at->addHour(9)->format('Y/m/d h:m') }}</span>
                                         <span class="text-muted">Since 24h ago</span>
                                     </p>
                                 </div>
