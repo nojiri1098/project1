@@ -11,12 +11,6 @@
                     <div class="col-sm-6">
                         <h1 class="m-0 text-dark">Top page</h1>
                     </div><!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Top Page</li>
-                        </ol>
-                    </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
@@ -29,7 +23,10 @@
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-header border-transparent">
-                                <h3 class="card-title">土壌湿度</h3>
+                                <div class="d-flex justify-content-between">
+                                    <h3 class="card-title">土壌湿度</h3>
+                                    <a href="#">{{ $envs->first()->soils()->get()->first()->created_at->addHour(9)->format('Y/m/d H:m') }}</a>
+                                </div>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body p-0">
