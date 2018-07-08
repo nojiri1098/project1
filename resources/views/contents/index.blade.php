@@ -191,6 +191,39 @@
                                         <span class="text-muted">REGISTRATION RATE</span>
                                     </p>
                                 </div>
+                                <div class="d-flex justify-content-between align-items-center mb-0">
+                                  <table>
+                                    <tbody>
+                                      <tr>
+                                          <td><a class="form-control"  style="text-align: center" href="{{ url('index/weather') }}">天気を更新する</a></td>
+                                      </tr>
+                                      @if(!empty($weather))
+                                      <tr>
+                                          <td>天気：{{ $weather->weather }}</td>
+                                      </tr>
+                                      <tr>
+                                          <td>降水確率：{{ $weather->precipitation }}</td>
+                                      </tr>
+                                      <tr>
+                                          <td>気温：{{ $weather->temperature }}</td>
+                                      </tr>
+                                      <tr>
+                                          <td>湿度：{{ $weather->humidity }}</td>
+                                      </tr>
+                                      <tr>
+                                          <td>風速：{{ $weather->windSpeed }}</td>
+                                      </tr>
+                                      <tr>
+                                          <td>取得時間：{{ $weather->created_at->addHour(9)->format('Y/m/d H:m') }}</td>
+                                      </tr>
+                                      @else
+                                      <tr>
+                                          <td>天気を取得できませんでした．</td>
+                                      </tr>
+                                      @endif
+                                      </tbody>
+                                  </table>
+                                </div>
                                 <!-- /.d-flex -->
                             </div>
                         </div>

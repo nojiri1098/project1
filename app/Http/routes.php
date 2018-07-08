@@ -2,6 +2,7 @@
 
 /* root */
 Route::get('/index', 'HomeController@index');
+Route::get('/index/weather', 'HomeController@getWeather');
 Route::get('/pulse', 'HomeController@pulse');
 
 /* Dashboard */
