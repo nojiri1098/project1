@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Planter;
 
 class PlanterTableSeeder extends Seeder
 {
@@ -11,28 +12,30 @@ class PlanterTableSeeder extends Seeder
      */
     public function run()
     {
-        if (count(DB::table('planters')->get()) === 0) {
-            DB::table('planters')->insert([[
-                'light' => 1,
-                'rate' => 1,
-                'created_at' => date("Y-m-d h:i:s"),
-                'updated_at' => date("Y-m-d h:i:s")
-            ], [
-                'light' => 2,
-                'rate' => 1,
-                'created_at' => date("Y-m-d h:i:s"),
-                'updated_at' => date("Y-m-d h:i:s")
-            ], [
-                'light' => 2,
-                'rate' => 2,
-                'created_at' => date("Y-m-d h:i:s"),
-                'updated_at' => date("Y-m-d h:i:s")
-            ], [
-                'light' => 2,
-                'rate' => 3,
-                'created_at' => date("Y-m-d h:i:s"),
-                'updated_at' => date("Y-m-d h:i:s")
-            ]]);
-        }
+        Planter::truncate();
+
+        DB::table('planters')->insert([[
+            'id' => 1,
+            'name' => '白熱灯',
+            'created_at' => date("Y-m-d h:i:s"),
+            'updated_at' => date("Y-m-d h:i:s")
+        ], [
+            'id' => 2,
+            'name' => 'LED 1:1',
+            'created_at' => date("Y-m-d h:i:s"),
+            'updated_at' => date("Y-m-d h:i:s")
+        ], [
+            'id' => 3,
+            'name' => 'LED 1:3',
+            'created_at' => date("Y-m-d h:i:s"),
+            'updated_at' => date("Y-m-d h:i:s")
+        ], [
+            'id' => 4,
+            'name' => 'LED 3:1',
+            'created_at' => date("Y-m-d h:i:s"),
+            'updated_at' => date("Y-m-d h:i:s")
+
+        ]]);
+
     }
 }

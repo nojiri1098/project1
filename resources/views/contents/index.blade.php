@@ -28,6 +28,35 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="card">
+                            <div class="card-header border-transparent">
+                                <h3 class="card-title">土壌湿度</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table m-0">
+                                        <thead>
+                                        <tr>
+                                            <th>プランタ</th>
+                                            <th>土壌湿度</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($envs->first()->soils()->get() as $soil)
+                                            <tr>
+                                                <td>{{ $soil->planter->name }}</td>
+                                                <td>{!! $soil->soil_level !!}</td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+
+                        <div class="card">
                             <div class="card-header no-border">
                                 <div class="d-flex justify-content-between">
                                     <h3 class="card-title">Temperature</h3>
