@@ -11,6 +11,11 @@
                     <div class="col-sm-6">
                         <h1 class="m-0 text-dark">Top page</h1>
                     </div><!-- /.col -->
+                    <div class="col-sm-2">
+                        <form action="{{ url('index') }}" method="get">
+                            <button class="form-control">更新する</button>
+                        </form>
+                    </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
