@@ -26,11 +26,76 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-6">
+
+
+                        <div class="card">
+                            <div class="card-header no-border">
+                                <div class="d-flex justify-content-between">
+                                    <h3 class="card-title">Temperature</h3>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <p class="d-flex flex-column">
+                                        <span class="text-bold text-lg">現在の温度{{ $envs->first()->temperature }}℃</span>
+                                    </p>
+                                    <p class="ml-auto d-flex flex-column text-right">
+                                        <span class="text-success text-lg">{{ $envs->first()->created_at->addHour(9)->format('Y/m/d h:m') }}</span>
+                                    </p>
+                                </div>
+                                <!-- /.d-flex -->
+
+                                <input type="hidden" value="{{ count($temperatures) }}" id="temperature-count">
+                                @foreach($temperatures as $key => $temperature)
+                                    <input type="hidden" value="{{ $temperature }}" id="temperature-{{ $key }}">
+                                @endforeach
+                                <div class="position-relative mb-4">
+                                    <canvas id="temperature-chart" height="200"></canvas>
+                                </div>
+                                <div class="d-flex flex-row justify-content-end">
+                                    <span class="text-muted">Since 24h ago</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card -->
+                        <div class="card">
+                            <div class="card-header no-border">
+                                <div class="d-flex justify-content-between">
+                                    <h3 class="card-title">Humidity</h3>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <p class="d-flex flex-column">
+                                        <span class="text-bold text-lg">現在の湿度{{ $envs->first()->humidity }}%</span>
+                                    </p>
+                                    <p class="ml-auto d-flex flex-column text-right">
+                                        <span class="text-success text-lg">{{ $envs->first()->created_at->addHour(9)->format('Y/m/d h:m') }}</span>
+                                    </p>
+                                </div>
+                                <!-- /.d-flex -->
+
+                                <input type="hidden" value="{{ count($humidities) }}" id="humidity-count">
+                                @foreach($humidities as $key => $humidity)
+                                    <input type="hidden" value="{{ $humidity }}" id="humidity-{{ $key }}">
+                                @endforeach
+                                <div class="position-relative mb-4">
+                                    <canvas id="humidity-chart" height="200"></canvas>
+                                </div>
+                                <div class="d-flex flex-row justify-content-end">
+                                    <span class="text-muted">Since 24h ago</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col-md-6 -->
+                    <div class="col-lg-6">
                         <div class="card">
                             <div class="card-header border-transparent">
                                 <div class="d-flex justify-content-between">
                                     <h3 class="card-title">土壌湿度</h3>
-                                    <a href="#">{{ $envs->first()->soils()->get()->first()->created_at->addHour(9)->format('Y/m/d H:m') }}</a>
+                                    <p>{{ $envs->first()->soils()->get()->first()->created_at->addHour(9)->format('Y/m/d H:m') }}</p>
                                 </div>
                             </div>
                             <!-- /.card-header -->
@@ -57,96 +122,6 @@
                             </div>
                             <!-- /.card-body -->
                         </div>
-
-                        <div class="card">
-                            <div class="card-header no-border">
-                                <div class="d-flex justify-content-between">
-                                    <h3 class="card-title">Temperature</h3>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <p class="d-flex flex-column">
-                                        <span class="text-bold text-lg">現在の温度{{ $envs->first()->temperature }}℃</span>
-                                    </p>
-                                    <p class="ml-auto d-flex flex-column text-right">
-                                        <span class="text-success">{{ $envs->first()->created_at->addHour(9)->format('Y/m/d h:m') }}</span>
-                                        <span class="text-muted">Since 24h ago</span>
-                                    </p>
-                                </div>
-                                <!-- /.d-flex -->
-
-                                <input type="hidden" value="{{ count($temperatures) }}" id="temperature-count">
-                                @foreach($temperatures as $key => $temperature)
-                                    <input type="hidden" value="{{ $temperature }}" id="temperature-{{ $key }}">
-                                @endforeach
-                                <div class="position-relative mb-4">
-                                    <canvas id="temperature-chart" height="200"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.card -->
-                        <div class="card">
-                            <div class="card-header no-border">
-                                <div class="d-flex justify-content-between">
-                                    <h3 class="card-title">Humidity</h3>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <p class="d-flex flex-column">
-                                        <span class="text-bold text-lg">現在の湿度{{ $envs->first()->humidity }}%</span>
-                                    </p>
-                                    <p class="ml-auto d-flex flex-column text-right">
-                                        <span class="text-success">{{ $envs->first()->created_at->addHour(9)->format('Y/m/d h:m') }}</span>
-                                        <span class="text-muted">Since 24h ago</span>
-                                    </p>
-                                </div>
-                                <!-- /.d-flex -->
-
-                                <input type="hidden" value="{{ count($humidities) }}" id="humidity-count">
-                                @foreach($humidities as $key => $humidity)
-                                    <input type="hidden" value="{{ $humidity }}" id="humidity-{{ $key }}">
-                                @endforeach
-                                <div class="position-relative mb-4">
-                                    <canvas id="humidity-chart" height="200"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.card -->
-                    </div>
-                    <!-- /.col-md-6 -->
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-header no-border">
-                                <div class="d-flex justify-content-between">
-                                    <h3 class="card-title">Sales</h3>
-                                    <a href="javascript:void(0);">View Report</a>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <p class="d-flex flex-column">
-                                        <span class="text-bold text-lg">$18,230.00</span>
-                                        <span>Sales Over Time</span>
-                                    </p>
-                                    <p class="ml-auto d-flex flex-column text-right">
-                                        <span class="text-success"><i class="fa fa-arrow-up"></i> 33.1%</span>
-                                        <span class="text-muted">Since last month</span>
-                                    </p>
-                                </div>
-                                <!-- /.d-flex -->
-
-                                <div class="position-relative mb-4">
-                                    <canvas id="sales-chart" height="200"></canvas>
-                                </div>
-
-                                <div class="d-flex flex-row justify-content-end">
-                                    <span class="mr-2"><i class="fa fa-square text-primary"></i> This year</span>
-                                    <span><i class="fa fa-square text-gray"></i> Last year</span>
-                                </div>
-                            </div>
-                        </div>
                         <!-- /.card -->
 
                         <div class="card">
@@ -162,7 +137,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
+                                <div class="d-flex justify-content-between align-items-center border-bottom mb-2">
                                     <p class="text-success text-xl">
                                         <i class="ion ion-ios-refresh-empty"></i>
                                     </p>
