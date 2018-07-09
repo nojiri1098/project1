@@ -36,12 +36,12 @@ class HomeController extends Controller
      */
     public function getWeather()
     {
-        $baseUrl = 'https://api.forecast.io/forecast';
-        $api = env('WEATHER_API');
-        $Oita['latitude']  = env('WEATHER_LATITUDE');
-        $Oita['longitude'] = env('WEATHER_LONGITUDE');
-
         try {
+            $baseUrl = 'https://api.forecast.io/forecast';
+            $api = env('WEATHER_API');
+            $Oita['latitude']  = env('WEATHER_LATITUDE');
+            $Oita['longitude'] = env('WEATHER_LONGITUDE');
+
             $temp = file_get_contents($baseUrl . '/' . $api . '/' . $Oita['latitude'] . ',' . $Oita['longitude']);
             $forecast = json_decode($temp,true);
 
@@ -53,9 +53,17 @@ class HomeController extends Controller
             $weather->windSpeed = $forecast['currently']['windSpeed'];
             $weather->save();
 
-            return redirect('/index');
         } catch (\Exception $e) {
-            return null;
+            $weather = new Weather();
+            $weather->weather = "unknown";
+            $weather->precipitation = 0;
+            $weather->temperature = 0;
+            $weather->humidity = 0;
+            $weather->windSpeed = 0;
+            $weather->save();
         }
+
+        return redirect('/index');
+
     }
 }
