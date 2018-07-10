@@ -36,13 +36,18 @@
                                 <h3 class="card-title">Data List</h3>
 
                                 <div class="card-tools">
-                                    <div class="input-group input-group-sm" style="width: 150px;">
-                                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                                        <div class="input-group-append">
-                                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                    <form id="submit_form" action="{{ url('data') }}" method="post">
+                                        {{ csrf_field() }}
+                                        <div class="input-group input-group-sm" style="width: 250px;">
+                                            <select name="date" class="form-control" id="submit_select">
+                                                <option>日付を選択してください</option>
+                                                <option value="0">全件表示</option>
+                                            @foreach($dates as $date)
+                                                    <option value="{{ $date }}">{{ $date }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                             <!-- /.card-header -->
@@ -53,9 +58,6 @@
                                         <th>Date</th>
                                         <th>Temperature</th>
                                         <th>Humidity</th>
-                                        <th>Co2</th>
-                                        <th>Weather</th>
-                                        <th>Precipitation</th>
                                         <th>Water 1</th>
                                         <th>Water 2</th>
                                         <th>Water 3</th>
@@ -65,12 +67,9 @@
 
                                     @foreach($envs as $key => $env)
                                         <tr>
-                                            <td>{{ $env->created_at->format('Y/m/d H:m') }}</td>
+                                            <td>{{ $env->created_at->addHour(9)->format('Y/m/d H:m') }}</td>
                                             <td>{{ $env->temperature }}</td>
                                             <td>{{ $env->humidity }}</td>
-                                            <td>{{ $env->co2 }}</td>
-                                            <td>{{ $env->weather }}</td>
-                                            <td>{{ $env->precipitation }}</td>
                                             @foreach($env->soils()->get() as $soil)
                                                 <td>{{ $soil->water }}</td>
                                             @endforeach
@@ -87,4 +86,14 @@
         </section>
     </div>
 
+@stop
+
+@section('js')
+    <script>
+        $(function(){
+            $("#submit_select").change(function(){
+                $("#submit_form").submit();
+            });
+        });
+    </script>
 @stop

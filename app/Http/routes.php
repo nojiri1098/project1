@@ -2,6 +2,7 @@
 
 /* root */
 Route::get('/index', 'HomeController@index');
+Route::get('/index/weather', 'HomeController@getWeather');
 Route::get('/pulse', 'HomeController@pulse');
 
 /* Dashboard */
@@ -14,6 +15,7 @@ Route::group(['prefix' => 'dashboard'], function () {
 /* Data */
 Route::group(['prefix' => 'data'], function () {
     Route::get('/', 'DataController@index')->name('data');
+    Route::post('/', 'DataController@search');
 });
 
 /* Analytics */

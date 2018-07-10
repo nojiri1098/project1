@@ -15,4 +15,18 @@ class Soil extends Model
     {
         return $this->belongsTo('App\Environment', 'environment_id');
     }
+
+    public function getSoilLevelAttribute()
+    {
+        switch ($this->water) {
+            case 1:
+                return '<span class="badge badge-danger">低い</span>';
+            case 2:
+                return '<span class="badge badge-success">正常</span>';
+            case 3:
+                return '<span class="badge badge-warning">高い</span>';
+            default:
+
+        }
+    }
 }

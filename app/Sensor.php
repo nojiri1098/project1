@@ -3,8 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\DB;
 
-class Sencor extends Model
+class Sensor extends Model
 {
     public function planter()
     {
