@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\SendEmails::class,
-        Commands\getSensorValues::class,
+        Commands\GetSensorValues::class,
     ];
 
     /**
