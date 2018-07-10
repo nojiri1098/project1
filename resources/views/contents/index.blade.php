@@ -128,50 +128,50 @@
                             <div class="card-header no-border">
                                 <h3 class="card-title">weather</h3>
                                 <div class="card-tools">
-                                    <a href="#" class="btn btn-sm btn-tool">
-                                        <i class="fa fa-download"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-sm btn-tool">
-                                        <i class="fa fa-bars"></i>
-                                    </a>
+                                    <a class="form-control"  style="text-align: center" href="{{ url('index/weather') }}">天気を更新する</a>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center border-bottom mb-2">
-                                    <p class="text-success text-xl">
-                                        <i class="ion ion-ios-refresh-empty"></i>
-                                    </p>
-                                    <p class="d-flex flex-column text-right">
-                                        <span class="font-weight-bold"><i class="ion ion-android-arrow-up text-success"></i> 12%</span>
-                                        <span class="text-muted">CONVERSION RATE</span>
-                                    </p>
+                                @if(!empty($weather))
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="callout callout-danger">
+                                            <h6>取得時刻</h6>
+                                                <p>{{ $weather->created_at->addHour(9)->format('Y/m/d H:m') }}</p>
+                                        </div>
+                                        <div class="callout callout-info">
+                                            <h6>天気</h6>
+                                                <p>{{ $weather->weather }}</p>
+                                        </div>
+                                        <div class="callout callout-warning">
+                                            <h6>気温</h6>
+                                                <p>{{ $weather->temperature }}℃</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="callout callout-success">
+                                            <h6>湿度</h6>
+                                                <p>{{ $weather->humidity }}%</p>
+                                        </div>
+                                        <div class="callout callout-primary">
+                                            <h6>風速</h6>
+                                                <p>{{ $weather->windSpeed }}m/s</p>
+                                        </div>
+                                        <div class="callout callout-gray">
+                                            <h6>降水確率</h6>
+                                                <p>{{ $weather->precipitation }}%</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <!-- /.d-flex -->
-                                <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
-                                    <p class="text-warning text-xl">
-                                        <i class="ion ion-ios-cart-outline"></i>
-                                    </p>
-                                    <p class="d-flex flex-column text-right">
-                                        <span class="font-weight-bold"><i class="ion ion-android-arrow-up text-warning"></i> 0.8%</span>
-                                        <span class="text-muted">SALES RATE</span>
-                                    </p>
-                                </div>
-                                <!-- /.d-flex -->
-                                <div class="d-flex justify-content-between align-items-center mb-0">
-                                    <p class="text-danger text-xl">
-                                        <i class="ion ion-ios-people-outline"></i>
-                                    </p>
-                                    <p class="d-flex flex-column text-right">
-                                        <span class="font-weight-bold"><i class="ion ion-android-arrow-down text-danger"></i> 1%</span>
-                                        <span class="text-muted">REGISTRATION RATE</span>
-                                    </p>
-                                </div>
+                                @else
+                                <p>
+                                    天気を取得できませんでした.
+                                </p>
+                                @endif
                                 <div class="d-flex justify-content-between align-items-center mb-0">
                                   <table>
                                     <tbody>
-                                      <tr>
-                                          <td><a class="form-control"  style="text-align: center" href="{{ url('index/weather') }}">天気を更新する</a></td>
-                                      </tr>
+
                                       @if(!empty($weather))
                                       <tr>
                                           <td>天気：{{ $weather->weather }}</td>
