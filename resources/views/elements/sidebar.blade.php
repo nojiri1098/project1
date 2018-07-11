@@ -48,9 +48,9 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ asset('pages/calendar.html') }}" class="nav-link {{ isActiveUrl('#') }}">
-                        <i class="nav-icon fa fa-calendar"></i>
-                        <p>Calendar</p>
+                    <a href="{{ url('data') }}" class="nav-link {{ isActiveUrl('data') }}">
+                        <i class="nav-icon fa fa-list"></i>
+                        <p>Datalist</p>
                     </a>
                 </li>
             </ul>
