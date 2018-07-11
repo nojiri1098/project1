@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Environment;
 use App\Weather;
 use App\Pulse;
+use Illuminate\Support\Facades\DB;
 
 use App\Http\Requests;
 
@@ -33,7 +34,15 @@ class HomeController extends Controller
 
         return view('contents.pulse')->with(['pulses' => $pulses]);
     }
-    
+
+    public function updatePulse(Request $request)
+    {
+        DB::table('pulses')->where('planter_id', $request->planter_id)
+            ->update(['time' => $request->time, 'unit' => $request->unit, 'duty' => $request->duty]);
+
+        return redirect('pulse');
+    }
+
     /*
      * 天気と降水確率を取得する
      */

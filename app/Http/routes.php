@@ -4,6 +4,7 @@
 Route::get('/index', 'HomeController@index');
 Route::get('/index/weather', 'HomeController@getWeather');
 Route::get('/pulse', 'HomeController@showPulse');
+Route::post('/pulse', 'HomeController@updatePulse');
 
 /* Dashboard */
 Route::group(['prefix' => 'dashboard'], function () {

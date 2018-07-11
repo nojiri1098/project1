@@ -33,7 +33,8 @@
                                     </div>
                                 </div>
                                 <div class="card-body" style="font-style:italic">
-                                    <form action="">
+                                    <form action="{{ url('pulse') }}" method="post">
+                                        {{ csrf_field() }}
                                         <div class="d-flex">
                                             <p class="d-flex flex-column">
                                                 <span class="text-bold text-lg">現在の周期 : {{ $pulse->time }} {{ $pulse->unit }}</span>
@@ -42,8 +43,8 @@
                                                 <input name="planter_id" type="hidden" value="{{ $key + 1 }}">
                                                 <input name="time" type="number" value="{{ $pulse->time }}" min="0" step="1" style="width:70px">
                                                 <select name="unit">
-                                                    <option value="milliseconds">ms</option>
-                                                    <option value="microseconds">μs</option>
+                                                    <option {{ $pulse->unit == 'ms' ? 'selected':'' }} value="ms">ms</option>
+                                                    <option {{ $pulse->unit == 'μs' ? 'selected':'' }} value="μs">μs</option>
                                                 </select>
                                             </p>
                                         </div>
