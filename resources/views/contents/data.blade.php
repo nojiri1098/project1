@@ -71,7 +71,7 @@
                                             <td>{{ $env->temperature }}</td>
                                             <td>{{ $env->humidity }}</td>
                                             @foreach($env->soils()->get() as $soil)
-                                                <td>{{ $soil->water }}</td>
+                                                <td>{!! $soil->soil_level !!}</td>
                                             @endforeach
                                         </tr>
                                     @endforeach
