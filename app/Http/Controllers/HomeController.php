@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Environment;
 use App\Weather;
+use App\Pulse;
 
 use App\Http\Requests;
 
@@ -26,11 +27,13 @@ class HomeController extends Controller
         return view('contents.index')->with(['envs' => $envs, 'temperatures' => $temperatures, 'humidities' => $humidities, 'weather' => $data]);
     }
 
-    public function pulse()
+    public function showPulse()
     {
-        return view('contents.pulse');
-    }
+        $pulses = Pulse::all();
 
+        return view('contents.pulse')->with(['pulses' => $pulses]);
+    }
+    
     /*
      * 天気と降水確率を取得する
      */

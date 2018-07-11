@@ -3,7 +3,7 @@
 /* root */
 Route::get('/index', 'HomeController@index');
 Route::get('/index/weather', 'HomeController@getWeather');
-Route::get('/pulse', 'HomeController@pulse');
+Route::get('/pulse', 'HomeController@showPulse');
 
 /* Dashboard */
 Route::group(['prefix' => 'dashboard'], function () {

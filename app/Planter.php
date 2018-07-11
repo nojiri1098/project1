@@ -25,4 +25,9 @@ class Planter extends Model
     {
         return $this->hasMany('App\Soil');
     }
+
+    public function pulse()
+    {
+        return $this->hasOne('App\Pulse');
+    }
 }
