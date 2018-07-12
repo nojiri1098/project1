@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(EnvironmentTableSeeder::class);
         $this->call(SoilTableSeeder::class);
         $this->call(WeatherTableSeeder::class);
+        $this->call(PulseTableSeeder::class);
     }
 }

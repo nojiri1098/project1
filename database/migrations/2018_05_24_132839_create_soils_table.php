@@ -12,6 +12,10 @@ class CreateSoilsTable extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('soils')) {
+            Schema::drop('soils');
+        }
+
         Schema::create('soils', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('planter_id');

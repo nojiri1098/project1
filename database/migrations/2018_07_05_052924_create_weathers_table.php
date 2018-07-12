@@ -12,12 +12,17 @@ class CreateWeathersTable extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('weathers')) {
+            Schema::drop('weathers');
+        }
+
         Schema::create('weathers', function (Blueprint $table) {
             $table->increments('id');
-            $table->Integer('weather');
-            $table->Integer('precipitation');
-            $table->Integer('temperature');
-            $table->Integer('humidity');
+            $table->string('weather');
+            $table->double('precipitation');
+            $table->double('temperature');
+            $table->double('humidity');
+            $table->double('windSpeed');
             $table->timestamps();
         });
     }

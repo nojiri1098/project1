@@ -12,6 +12,10 @@ class CreatePulsesTable extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('pulses')) {
+            Schema::drop('pulses');
+        }
+
         Schema::create('pulses', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('planter_id');
