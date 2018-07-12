@@ -12,6 +12,9 @@ class HomeController extends Controller
 {
     public function index()
     {
+        exec('python lib/test.py', $output);
+        dd($output);
+
         $envs = Environment::limit(144)->orderBy('created_at', 'DESC')->get();
         $temperatures = [];
         $humidities = [];
