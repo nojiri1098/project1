@@ -13,15 +13,9 @@ class DataController extends Controller
 {
     public function index()
     {
-        // 時間があればPaginateを実装する
-        $envs = Environment::limit(300)->orderBy('created_at', 'DESC');
-        $temps = $envs->get(['created_at']);
-        foreach ($temps as $key => $temp) {
-            $dates[$key] = $temp->created_at->format('Y-m-d');
-        }
-        $result = array_unique($dates);
+        $envs = Environment::orderBy('created_at', 'DESC')->paginate(50);
 
-        return view('contents.data')->with(['envs' => $envs->get(), 'dates' => $result]);
+        return view('contents.data')->with(['envs' => $envs, 'dates' => dateList()]);
     }
 
     public function search(Request $request)
@@ -30,16 +24,8 @@ class DataController extends Controller
             return redirect()->back();
         }
 
-        // 時間があればPaginateを実装する
-        $envs = Environment::limit(300)->orderBy('created_at', 'DESC');
-        $temps = $envs->get(['created_at']);
-        foreach ($temps as $key => $temp) {
-            $dates[$key] = $temp->created_at->format('Y-m-d');
-        }
-        $result = array_unique($dates);
+        $searched_envs = Environment::whereDate('created_at', "=", $request->date)->orderBy('created_at', 'DESC')->paginate(50);
 
-        $searched_envs = Environment::whereDate('created_at', "=", $request->date)->orderBy('created_at', 'DESC')->get();
-
-        return view('contents.data')->with(['envs' => $searched_envs, 'dates' => $result]);
+        return view('contents.data')->with(['envs' => $searched_envs, 'dates' => dateList()]);
     }
 }

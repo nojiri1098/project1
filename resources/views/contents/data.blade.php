@@ -42,7 +42,7 @@
                                             <select name="date" class="form-control" id="submit_select">
                                                 <option>日付を選択してください</option>
                                                 <option value="0">全件表示</option>
-                                            @foreach($dates as $date)
+                                                @foreach($dates as $date)
                                                     <option value="{{ $date }}">{{ $date }}</option>
                                                 @endforeach
                                             </select>
@@ -80,6 +80,7 @@
                             <!-- /.card-body -->
                         </div>
                         <!-- /.card -->
+                        {{ $envs->links() }}
                     </div>
                 </div><!-- /.row -->
             </div>
