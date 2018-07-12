@@ -1,4 +1,3 @@
-<!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-danger elevation-4">
     <!-- Brand Logo -->
     <a href="{{ url('index') }}" class="brand-link">
@@ -9,12 +8,9 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <!-- Sidebar user panel (optional) -->
         <!-- Sidebar Menu -------------------------------------------------------------------------------------------------------->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-                     with font-awesome or any other icon font library -->
                 <li class="nav-item">
                     <a href="{{ url('index') }}" class="nav-link {{ isActiveUrl('index') }}">
                         <i class="fa fa-circle-o nav-icon"></i>
