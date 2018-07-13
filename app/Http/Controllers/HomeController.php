@@ -58,7 +58,7 @@ class HomeController extends Controller
             $forecast = json_decode($temp,true);
 
             $weather = new Weather();
-            $weather->weather = $forecast['currently']['precipType'];
+            $weather->weather = $forecast['currently']['icon'];
             $weather->precipitation = $forecast['currently']['precipProbability'];
             $weather->temperature = round(($forecast['currently']['temperature'] - 30) / 2, 2);
             $weather->humidity = round($forecast['currently']['humidity'], 2);
@@ -67,11 +67,7 @@ class HomeController extends Controller
 
         } catch (\Exception $e) {
             $weather = new Weather();
-            $weather->weather = "unknown";
-            $weather->precipitation = 0;
-            $weather->temperature = 0;
-            $weather->humidity = 0;
-            $weather->windSpeed = 0;
+            $weather->weather = "天気を取得できませんでした";
             $weather->save();
         }
 
