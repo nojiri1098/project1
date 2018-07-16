@@ -22,7 +22,7 @@ class CreateWeathersTable extends Migration
             $table->double('precipitation');
             $table->double('temperature');
             $table->double('humidity');
-            $table->double('windSpeed');
+            $table->double('wind_speed');
             $table->timestamps();
         });
     }

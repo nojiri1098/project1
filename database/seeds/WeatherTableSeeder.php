@@ -17,7 +17,7 @@ class WeatherTableSeeder extends Seeder
                 'precipitation' => 70,
                 'temperature' => 20,
                 'humidity' => 70,
-                'windSpeed' => 10,
+                'wind_speed' => 10,
                 'created_at' => date("Y-m-d h:i:s"),
                 'updated_at' => date("Y-m-d h:i:s")
             ],

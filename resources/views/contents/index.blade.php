@@ -31,7 +31,7 @@
                         <div class="card">
                             <div class="card-header no-border">
                                 <div class="d-flex justify-content-between">
-                                    <h3 class="card-title">Temperature</h3>
+                                    <h3 class="card-title">温度</h3>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -61,7 +61,7 @@
                         <div class="card">
                             <div class="card-header no-border">
                                 <div class="d-flex justify-content-between">
-                                    <h3 class="card-title">Humidity</h3>
+                                    <h3 class="card-title">湿度</h3>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -126,7 +126,7 @@
 
                         <div class="card">
                             <div class="card-header no-border">
-                                <h3 class="card-title">weather</h3>
+                                <h3 class="card-title">天気</h3>
                                 <div class="card-tools">
                                     <a class="form-control"  style="text-align: center" href="{{ url('index/weather') }}">天気を更新する</a>
                                 </div>
@@ -155,7 +155,7 @@
                                         </div>
                                         <div class="callout">
                                             <h6>風速</h6>
-                                                <p>{{ $weather->windSpeed }}m/s</p>
+                                                <p>{{ $weather->wind_speed }}m/s</p>
                                         </div>
                                         <div class="callout callout-purple">
                                             <h6>降水確率</h6>

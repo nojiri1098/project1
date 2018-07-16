@@ -60,9 +60,9 @@ class HomeController extends Controller
             $weather = new Weather();
             $weather->weather = $forecast['currently']['icon'];
             $weather->precipitation = $forecast['currently']['precipProbability'];
-            $weather->temperature = round(($forecast['currently']['temperature'] - 30) / 2, 2);
-            $weather->humidity = round($forecast['currently']['humidity'], 2);
-            $weather->windSpeed = $forecast['currently']['windSpeed'];
+            $weather->temperature = round(($forecast['currently']['temperature'] - 30) / 2, 1);
+            $weather->humidity = round($forecast['currently']['humidity'], 2) * 100;
+            $weather->wind_speed = round($forecast['currently']['windSpeed'], 1);
             $weather->save();
 
         } catch (\Exception $e) {
@@ -72,6 +72,5 @@ class HomeController extends Controller
         }
 
         return redirect('/index');
-
     }
 }

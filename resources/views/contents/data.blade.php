@@ -55,13 +55,13 @@
                                 <table class="table table-hover text-right">
                                     <thead>
                                     <tr>
-                                        <th>Date</th>
-                                        <th>Temperature</th>
-                                        <th>Humidity</th>
-                                        <th>Water 1</th>
-                                        <th>Water 2</th>
-                                        <th>Water 3</th>
-                                        <th>Water 4</th>
+                                        <th>取得時間</th>
+                                        <th>温度</th>
+                                        <th>湿度</th>
+                                        <th>土壌湿度1</th>
+                                        <th>土壌湿度2</th>
+                                        <th>土壌湿度3</th>
+                                        <th>土壌湿度4</th>
                                     </tr>
                                     </thead>
 
