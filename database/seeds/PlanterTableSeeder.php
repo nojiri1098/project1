@@ -31,7 +31,7 @@ class PlanterTableSeeder extends Seeder
             'updated_at' => date("Y-m-d h:i:s")
         ], [
             'id' => 4,
-            'name' => '赤:青　1:3',
+            'name' => '赤:青　3:1',
             'created_at' => date("Y-m-d h:i:s"),
             'updated_at' => date("Y-m-d h:i:s")
 
