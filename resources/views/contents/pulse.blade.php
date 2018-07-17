@@ -64,7 +64,7 @@
                                                 <span class="text-bold text-lg">直流</span>
                                             </p>
                                             <p class="text-xl text-success">
-                                                <span class="text-bold text-lg">消費電力:100W</span>
+                                                <span class="text-bold text-lg">消費電力:{{ $pulse->direct_power }}W</span>
                                             </p>
                                         </div>
                                         <div class="d-flex justify-content-between align-items-center">
@@ -72,7 +72,7 @@
                                                 <span class="text-bold text-lg">現在</span>
                                             </p>
                                             <p class="text-xl">
-                                                <span class="text-bold text-lg">消費電力 :70W</span>
+                                                <span class="text-bold text-lg">消費電力 :{{ $pulse->pulse_power }}W</span>
                                             </p>
                                         </div>
                                     </div>

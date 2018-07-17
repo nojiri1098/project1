@@ -10,4 +10,15 @@ class Pulse extends Model
     {
         return $this->belongsTo('App\Planter');
     }
+
+    public function getDirectPowerAttribute()
+    {
+        return $this->time;
+
+    }
+
+    public function getPulsePowerAttribute()
+    {
+        return $this->time;
+    }
 }
