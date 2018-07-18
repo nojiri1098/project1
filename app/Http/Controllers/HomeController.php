@@ -43,6 +43,9 @@ class HomeController extends Controller
         DB::table('pulses')->where('planter_id', $request->planter_id)
             ->update(['time' => $request->time, 'unit' => $request->unit, 'duty' => $request->duty]);
 
+        $time = $request->unit == 'ms' ? $request->time : $request->time / 1000;
+        exec('python3 ~/project1/public/lib/updatePulse.py p ' . $time . ' ' . $request->duty);
+
         return redirect('pulse');
     }
 

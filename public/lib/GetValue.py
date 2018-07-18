@@ -15,11 +15,7 @@ def main():
     # 第1引数 : args[1]
     # 第2引数 : args[2]
     args = sys.argv
-    try :
-        flag = args[1] + ',' + args[2] + ',' + args[3]
-    except:
-        flag = args[1]
-
+    flag = args[1]
     flag2 = flag.encode('utf-8')
 
     num = 0
