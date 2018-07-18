@@ -48,8 +48,9 @@ def main():
             print(all_sensors[5])
         except:
             print("取得がうまくいかなかった")
-        
+
         ser.close()
+
 
 if __name__ == '__main__':
     main()
