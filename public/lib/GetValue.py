@@ -9,7 +9,7 @@ def main():
     # COMポートを指定してシリアル通信開始
     # /dev/ttyACM0
     # /dev/usbmodem1421
-    ser = serial.Serial('/dev/ttyACM0',9600,timeout=1)
+    ser = serial.Serial('COM3',9600,timeout=1)
 
     # 引数
     # 第1引数 : args[1]
@@ -42,8 +42,8 @@ def main():
         try:
             print(all_sensors[0])
             print(all_sensors[1])
-            print(all_sensors[3])
             print(all_sensors[2])
+            print(all_sensors[3])
             print(all_sensors[4])
             print(all_sensors[5])
         except:
