@@ -12,13 +12,14 @@ class CreateEnvironmentsTable extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('environments')) {
+            Schema::drop('environments');
+        }
+
         Schema::create('environments', function (Blueprint $table) {
             $table->increments('id');
             $table->Integer('temperature');
             $table->unsignedInteger('humidity');
-            $table->Integer('co2');
-            $table->Integer('weather');
-            $table->Integer('rain');
             $table->timestamps();
         });
     }

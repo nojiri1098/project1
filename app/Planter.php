@@ -11,9 +11,9 @@ class Planter extends Model
     const Planter3 = 3;     // LED 赤多い
     const Planter4 = 4;     // LED 青多い
 
-    public function sencors()
+    public function sensors()
     {
-        return $this->hasMany('App\Sencor');
+        return $this->hasMany('App\Sensor');
     }
 
     public function lights()
@@ -24,5 +24,10 @@ class Planter extends Model
     public function soils()
     {
         return $this->hasMany('App\Soil');
+    }
+
+    public function pulse()
+    {
+        return $this->hasOne('App\Pulse');
     }
 }

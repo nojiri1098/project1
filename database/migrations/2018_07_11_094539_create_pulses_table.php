@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePlantersTable extends Migration
+class CreatePulsesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,16 @@ class CreatePlantersTable extends Migration
      */
     public function up()
     {
-        Schema::create('planters', function (Blueprint $table) {
+        if (Schema::hasTable('pulses')) {
+            Schema::drop('pulses');
+        }
+
+        Schema::create('pulses', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('light');
-            $table->unsignedInteger('rate');
+            $table->integer('planter_id');
+            $table->double('time');
+            $table->string('unit');
+            $table->double('duty');
             $table->timestamps();
         });
     }
@@ -27,6 +33,6 @@ class CreatePlantersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('planters');
+        Schema::drop('pulses');
     }
 }

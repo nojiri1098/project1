@@ -15,5 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SensorTableSeeder::class);
         $this->call(EnvironmentTableSeeder::class);
         $this->call(SoilTableSeeder::class);
+        $this->call(WeatherTableSeeder::class);
+        $this->call(PulseTableSeeder::class);
     }
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Environment;
 use App\Weather;
+use App\Pulse;
+use Illuminate\Support\Facades\DB;
 
 use App\Http\Requests;
 
@@ -29,9 +31,19 @@ class HomeController extends Controller
         return view('contents.index')->with(['envs' => $envs, 'temperatures' => $temperatures, 'humidities' => $humidities, 'weather' => $data]);
     }
 
-    public function pulse()
+    public function showPulse()
     {
-        return view('contents.pulse');
+        $pulses = Pulse::all();
+
+        return view('contents.pulse')->with(['pulses' => $pulses]);
+    }
+
+    public function updatePulse(Request $request)
+    {
+        DB::table('pulses')->where('planter_id', $request->planter_id)
+            ->update(['time' => $request->time, 'unit' => $request->unit, 'duty' => $request->duty]);
+
+        return redirect('pulse');
     }
 
     /*
@@ -49,24 +61,19 @@ class HomeController extends Controller
             $forecast = json_decode($temp,true);
 
             $weather = new Weather();
-            $weather->weather = $forecast['currently']['precipType'];
+            $weather->weather = $forecast['currently']['icon'];
             $weather->precipitation = $forecast['currently']['precipProbability'];
-            $weather->temperature = round(($forecast['currently']['temperature'] - 30) / 2, 2);
-            $weather->humidity = round($forecast['currently']['humidity'], 2);
-            $weather->windSpeed = $forecast['currently']['windSpeed'];
+            $weather->temperature = round(($forecast['currently']['temperature'] - 30) / 2, 1);
+            $weather->humidity = round($forecast['currently']['humidity'], 2) * 100;
+            $weather->wind_speed = round($forecast['currently']['windSpeed'], 1);
             $weather->save();
 
         } catch (\Exception $e) {
             $weather = new Weather();
-            $weather->weather = "unknown";
-            $weather->precipitation = 0;
-            $weather->temperature = 0;
-            $weather->humidity = 0;
-            $weather->windSpeed = 0;
+            $weather->weather = "天気を取得できませんでした";
             $weather->save();
         }
 
         return redirect('/index');
-
     }
 }

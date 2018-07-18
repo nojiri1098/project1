@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Planter;
+use App\Pulse;
 
-class PlanterTableSeeder extends Seeder
+class PulseTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,30 +12,40 @@ class PlanterTableSeeder extends Seeder
      */
     public function run()
     {
-        Planter::truncate();
+        Pulse::truncate();
 
-        DB::table('planters')->insert([[
+        DB::table('pulses')->insert([[
             'id' => 1,
-            'name' => '赤:青　1:1',
+            'planter_id' => 1,
+            'time' => 100,
+            'unit' => 'ms',
+            'duty' => 0.5,
             'created_at' => date("Y-m-d h:i:s"),
             'updated_at' => date("Y-m-d h:i:s")
         ], [
             'id' => 2,
-            'name' => '赤:青　1:3',
+            'planter_id' => 2,
+            'time' => 100,
+            'unit' => 'ms',
+            'duty' => 0.5,
             'created_at' => date("Y-m-d h:i:s"),
             'updated_at' => date("Y-m-d h:i:s")
         ], [
             'id' => 3,
-            'name' => '赤:青　3:1',
+            'planter_id' => 3,
+            'time' => 100,
+            'unit' => 'ms',
+            'duty' => 0.5,
             'created_at' => date("Y-m-d h:i:s"),
             'updated_at' => date("Y-m-d h:i:s")
         ], [
             'id' => 4,
-            'name' => '赤:青　3:1',
+            'planter_id' => 4,
+            'time' => 100,
+            'unit' => 'ms',
+            'duty' => 0.5,
             'created_at' => date("Y-m-d h:i:s"),
             'updated_at' => date("Y-m-d h:i:s")
-
         ]]);
-
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Environment;
 
 class EnvironmentTableSeeder extends Seeder
 {
@@ -11,44 +12,17 @@ class EnvironmentTableSeeder extends Seeder
      */
     public function run()
     {
-        if (count(DB::table('environments')->get()) === 0) {
-            DB::table('environments')->insert([[
-                'id' => 1,
-                'temperature' => 20,
-                'humidity' => 60,
+        Environment::truncate();
+
+        for ($i = 1;$i <= 150;$i++) {
+
+            DB::table('environments')->insert([
+                'id' => $i,
+                'temperature' => rand(20,30),
+                'humidity' => rand(70,100),
                 'created_at' => date("Y-m-d h:i:s"),
                 'updated_at' => date("Y-m-d h:i:s")
-            ], [
-                'id' => 2,
-                'temperature' => 30,
-                'humidity' => 50,
-                'created_at' => date("Y-m-d h:i:s"),
-                'updated_at' => date("Y-m-d h:i:s")
-            ], [
-                'id' => 3,
-                'temperature' => 0,
-                'humidity' => 26,
-                'created_at' => date("Y-m-d h:i:s"),
-                'updated_at' => date("Y-m-d h:i:s")
-            ], [
-                'id' => 4,
-                'temperature' => -5,
-                'humidity' => 28,
-                'created_at' => date("Y-m-d h:i:s"),
-                'updated_at' => date("Y-m-d h:i:s")
-            ], [
-                'id' => 5,
-                'temperature' => 23,
-                'humidity' => 23,
-                'created_at' => date("Y-m-d h:i:s"),
-                'updated_at' => date("Y-m-d h:i:s")
-            ], [
-                'id' => 6,
-                'temperature' => -10,
-                'humidity' => 100,
-                'created_at' => date("Y-m-d h:i:s"),
-                'updated_at' => date("Y-m-d h:i:s")
-            ]]);
+            ]);
         }
     }
 }

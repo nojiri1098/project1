@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSencorsTable extends Migration
+class CreateSensorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,11 @@ class CreateSencorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sencors', function (Blueprint $table) {
+        if (Schema::hasTable('sensors')) {
+            Schema::drop('sensors');
+        }
+
+        Schema::create('sensors', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('planter_id');
             $table->string('name');
@@ -27,6 +31,6 @@ class CreateSencorsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('sencors');
+        Schema::drop('sensors');
     }
 }
