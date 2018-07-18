@@ -41,8 +41,9 @@ class GetSensorValues extends Command
      */
     public function handle()
     {
-        $temp = rand(20,30);
-        $hum = rand(70,100);
+        exec('python3 ~/project1/public/lib/GetValue.py a', $output);
+        $hum = $output[0];
+        $temp = $output[1];
 
         try {
             DB::beginTransaction();
@@ -53,7 +54,7 @@ class GetSensorValues extends Command
             $env->save();
 
             $planter_id = [1, 2, 3, 4];
-            $water = [rand(1,3), rand(1,3), rand(1,3), rand(1,3)];
+            $water = [$output[2], $output[3], $output[4], $output[5]];
 
             for ($i = 0; $i < count($planter_id); $i++) {
                 $soil = new Soil();
