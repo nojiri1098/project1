@@ -41,7 +41,7 @@ class HomeController extends Controller
             ->update(['time' => $request->time, 'unit' => $request->unit, 'duty' => $request->duty]);
 
         $time = $request->unit == 'ms' ? $request->time : $request->time / 1000;
-        exec('python3 ~/project1/public/lib/updatePulse.py p ' . $time . ' ' . $request->duty);
+        exec('python3 ~/project1/public/lib/GetValue.py p ' . $request->duty . ' ' . $time, $output);
 
         return redirect('pulse');
     }
