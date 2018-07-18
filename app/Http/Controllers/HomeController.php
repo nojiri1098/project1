@@ -37,13 +37,11 @@ class HomeController extends Controller
 
     public function updatePulse(Request $request)
     {
-//        DB::table('pulses')->where('planter_id', $request->planter_id)
-//            ->update(['time' => $request->time, 'unit' => $request->unit, 'duty' => $request->duty]);
+        DB::table('pulses')->where('planter_id', $request->planter_id)
+            ->update(['time' => $request->time, 'unit' => $request->unit, 'duty' => $request->duty]);
 
         $time = $request->unit == 'ms' ? $request->time : $request->time / 1000;
         exec('python3 ~/project1/public/lib/GetValue.py p ' . $request->duty . ' ' . $time, $output);
-
-        dd('python3 ~/project1/public/lib/GetValue.py p ' . $request->duty . ' ' . $time, $output);
 
         return redirect('pulse');
     }
