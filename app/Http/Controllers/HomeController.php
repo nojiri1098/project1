@@ -30,18 +30,24 @@ class HomeController extends Controller
 
     public function showPulse()
     {
-        $pulses = Pulse::all();
+        $pulse = Pulse::first();
 
-        return view('contents.pulse')->with(['pulses' => $pulses]);
+        return view('contents.pulse')->with(['pulse' => $pulse]);
     }
 
     public function updatePulse(Request $request)
     {
-        DB::table('pulses')->where('planter_id', $request->planter_id)
-            ->update(['time' => $request->time, 'unit' => $request->unit, 'duty' => $request->duty]);
+        if ($request->submit == "送信") {
+            DB::table('pulses')->where('planter_id', $request->planter_id)
+                ->update(['time' => $request->time, 'unit' => $request->unit, 'duty' => $request->duty]);
 
-        $time = $request->unit == 'ms' ? $request->time : $request->time / 1000;
-        exec('python3 ~/project1/public/lib/GetValue.py p ' . $request->duty . ' ' . $time, $output);
+            $time = $request->unit == 'ms' ? $request->time : $request->time / 1000;
+            exec('python3 ~/project1/public/lib/GetValue.py p,' . $request->duty . ',' . $time, $output);
+        } elseif ($request->submit == "停止") {
+            exec('python3 ~/project1/public/lib/GetValue.py e', $output);
+        } elseif ($request->submit == "点灯") {
+            exec('python3 ~/project1/public/lib/GetValue.py p,1,0.5');
+        }
 
         return redirect('pulse');
     }

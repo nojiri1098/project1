@@ -25,7 +25,6 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-6">
-                        @foreach($pulses as $key => $pulse)
                             <div class="card">
                                 <div class="card-header no-border">
                                     <div class="d-flex justify-content-between">
@@ -40,7 +39,7 @@
                                                 <span class="text-bold text-lg">現在の周期 : {{ $pulse->time }} {{ $pulse->unit }}</span>
                                             </p>
                                             <p class="ml-auto d-flex text-right">
-                                                <input name="planter_id" type="hidden" value="{{ $key + 1 }}">
+                                                <input name="planter_id" type="hidden" value="1">
                                                 <input name="time" type="number" value="{{ $pulse->time }}" min="0" step="1" style="width:70px">
                                                 <select name="unit">
                                                     <option {{ $pulse->unit == 'ms' ? 'selected':'' }} value="ms">ms</option>
@@ -57,7 +56,15 @@
                                                 <input class="btn btn-primary btn-sm" type="submit" value="送信">
                                             </p>
                                         </div>
+                                        <div class="d-flex float-right">
+                                            <p>
+                                                <input class="btn btn-primary btn-sm" type="submit" value="停止">
+                                                <input class="btn btn-primary btn-sm" type="submit" value="点灯">
+                                            </p>
+                                        </div>
                                     </form>
+                                </div>
+                                <div class="card-body" style="font-style:italic">
                                     <div class="position-relative mb-2">
                                         <div class="d-flex justify-content-between align-items-center border-bottom mb-1">
                                             <p class="text-success text-xl">
@@ -78,15 +85,11 @@
                                     </div>
                                 </div>
                             </div>
-                            @if($key == 1)
-                                </div>
-                                <div class="col-lg-6">
-                            @endif
-                        @endforeach
                     </div>
                 </div>
             </div>
-        </section>
+    </div>
+    </section>
     </div>
 
 @stop
