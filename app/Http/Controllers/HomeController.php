@@ -30,9 +30,9 @@ class HomeController extends Controller
 
     public function showPulse()
     {
-        $pulses = Pulse::all();
+        $pulse = Pulse::first();
 
-        return view('contents.pulse')->with(['pulses' => $pulses]);
+        return view('contents.pulse')->with(['pulse' => $pulse]);
     }
 
     public function updatePulse(Request $request)
