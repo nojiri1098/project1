@@ -53,13 +53,13 @@
                                             </p>
                                             <p class="ml-auto d-flex text-right" style="height :30px">
                                                 <input name="duty" type="number" value="{{ $pulse->duty }}" min="0" step="0.01" style="width:70px">
-                                                <input class="btn btn-primary btn-sm" type="submit" value="送信">
+                                                <input name="submit" class="btn btn-primary btn-sm" type="submit" value="送信">
                                             </p>
                                         </div>
                                         <div class="d-flex float-right">
                                             <p>
-                                                <input class="btn btn-primary btn-sm" type="submit" value="停止">
-                                                <input class="btn btn-primary btn-sm" type="submit" value="点灯">
+                                                <input name="submit" class="btn btn-primary btn-sm" type="submit" value="停止">
+                                                <input name="submit" class="btn btn-primary btn-sm" type="submit" value="点灯">
                                             </p>
                                         </div>
                                     </form>

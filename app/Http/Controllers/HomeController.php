@@ -46,7 +46,7 @@ class HomeController extends Controller
         } elseif ($request->submit == "停止") {
             exec('python3 ~/project1/public/lib/GetValue.py e', $output);
         } elseif ($request->submit == "点灯") {
-            exec('python3 ~/project1/public/lib/GetValue.py p,1,0.5');
+            exec('python3 ~/project1/public/lib/GetValue.py p,0.5,1');
         }
 
         return redirect('pulse');
